@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="85.51763392857146" y="277.0">Player</node>
+    <node x="354.0" y="344.5">Dice</node>
+    <node x="0.0" y="578.5">LuckyCard</node>
+    <node x="238.00000000000003" y="545.0">GameLogic</node>
+    <node x="190.79531250000002" y="0.0">Location</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="GameLogic" target="Location">
+      <point x="90.42857142857142" y="-59.0" />
+      <point x="433.92857142857144" y="525.0" />
+      <point x="621.5" y="525.0" />
+      <point x="621.5" y="237.0" />
+      <point x="359.5453125" y="237.0" />
+      <point x="78.75" y="103.5" />
+    </edge>
+    <edge source="Player" target="Location">
+      <point x="0.0" y="-104.0" />
+      <point x="197.01763392857146" y="247.0" />
+      <point x="247.04531250000002" y="247.0" />
+      <point x="-33.75" y="103.5" />
+    </edge>
+    <edge source="GameLogic" target="Dice">
+      <point x="30.142857142857082" y="-59.0" />
+      <point x="373.6428571428571" y="505.0" />
+      <point x="477.0" y="505.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="Location" target="Player">
+      <point x="11.25" y="103.5" />
+      <point x="292.0453125" y="257.0" />
+      <point x="286.2176339285715" y="257.0" />
+      <point x="89.20000000000005" y="-104.0" />
+    </edge>
+    <edge source="LuckyCard" target="Player">
+      <point x="0.0" y="-25.5" />
+      <point x="109.0" y="525.0" />
+      <point x="113.39263392857146" y="525.0" />
+      <point x="-83.625" y="104.0" />
+    </edge>
+    <edge source="GameLogic" target="Player">
+      <point x="-60.285714285714334" y="-59.0" />
+      <point x="283.21428571428567" y="515.0" />
+      <point x="224.89263392857146" y="515.0" />
+      <point x="27.875" y="104.0" />
+    </edge>
+  </edges>
+  <settings layout="Hıerarchıc Group" zoom="1.0" x="402.0" y="264.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
