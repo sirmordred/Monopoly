@@ -7,18 +7,18 @@ public class Player {
     private int cash = 1500;
     private List<Location> ownedLocations = new ArrayList<>();; // TODO delete
     private boolean isInJail = false;
-    private Location location = null;
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(int newLocationIndex) {
-        this.location.setLocationIndex(newLocationIndex);
-    }
+    private int currLocationIndex = 1; // TODO 1 is for START
 
     public Player(String name) {
         this.name = name;
+    }
+
+    public int getCurrLocationIndex() {
+        return currLocationIndex;
+    }
+
+    public void setCurrLocationIndex(int currLocationIndex) {
+        this.currLocationIndex = currLocationIndex;
     }
 
     public String getName() {
@@ -51,11 +51,5 @@ public class Player {
 
     public void setInJail(boolean inJail) {
         isInJail = inJail;
-    }
-
-    @Override
-    public String toString() {
-        return "Player: " + this.name + "is currently on: " + this.location +
-                " and has " + this.cash + "$ money";
     }
 }

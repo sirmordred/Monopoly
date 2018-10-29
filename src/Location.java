@@ -1,7 +1,8 @@
 public class Location {
 
-    public Location(String name) {
+    public Location(String name, int locationIndex) {
         this.name = name;
+        this.locationIndex = locationIndex;
     }
 
     public String getName() {
