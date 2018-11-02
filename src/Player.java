@@ -7,7 +7,7 @@ public class Player {
     private int cash = 1500;
     private List<Location> ownedLocations = new ArrayList<>();
     private boolean isInJail = false;
-    private int currLocationIndex = 1; // TODO 1 is for START
+    private int currLocationIndex = 0; // TODO 0 is for START
 
     public Player(String name) {
         this.name = name;

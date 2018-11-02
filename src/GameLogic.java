@@ -51,7 +51,7 @@ public class GameLogic {
         while(isGameContinue()) {
             for (Player player : players) {
                 System.out.println("Player "+player.getName()+"'s turn");
-                if(player.isInJail()){
+                if(player.isInJail()){ // TODO print info of player which is in Jail
                     continue;
                 }
                 // player rolls dice
@@ -70,7 +70,6 @@ public class GameLogic {
                 }
                 player.setCurrLocationIndex(playerNewLocationIndex);
                 int playerLocIndexAfterMove = player.getCurrLocationIndex();
-                // TODO FIX OUT OF BOUNDS EXCEPTION
                 Location playerLocAfterMove = locations.get(playerLocIndexAfterMove);
 
                 // TODO (optional) if player passes STARTing location, give some cash to player or not(optional)
@@ -83,8 +82,7 @@ public class GameLogic {
                 } else if (playerLocAfterMove instanceof LocationLuckyCard) {
                     // TODO if location is LuckyCard, call imFeelingLucky() function
                     LocationLuckyCard playerLocAfterMove1 = (LocationLuckyCard) playerLocAfterMove;
-                } else {
-                    // Cast to LocationCity
+                } else if (playerLocAfterMove instanceof LocationCity){
                     LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;// TODO Location cannot be cast to LocationCity start block is location
                     if (playerLocAfterMove1.isLocationOwned()) {
                         int rentAmount = playerLocAfterMove1.getRentPrice(); // calculate rent price
@@ -97,15 +95,13 @@ public class GameLogic {
                         String userChoice = scn2.nextLine();
                         if (userChoice.equals("Y") || userChoice.equals("y")) {
                             int price = playerLocAfterMove1.getPrice();
+                            // TODO check if Player can pay the price !!!
                             player.setCash(player.getCash() - price);
                             playerLocAfterMove1.setOwner(player);
                         }
                     }
-
-                    showPlayerInfo(player);
-                    // TODO after every turn, print Player's info by calling showPlayerInfo(Player player)
                 }
-
+                showPlayerInfo(player);
             }
         }
 
@@ -122,9 +118,9 @@ public class GameLogic {
         return true;
     }
 
-    public static String showPlayerInfo(Player player) {
-        return "Player " + player.getName() + " is currently on: " +
+    public static void showPlayerInfo(Player player) {
+        System.out.println("Player " + player.getName() + " is currently on: " +
                 locations.get(player.getCurrLocationIndex()).getName() +
-                " and has " + player.getCash() + "$ money";
+                " and has " + player.getCash() + "$ money");
     }
 }
