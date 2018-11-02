@@ -1,4 +1,9 @@
-public class LuckyCard {
+public class LocationLuckyCard extends Location {
+
+
+    public LocationLuckyCard(String name, int locationIndex) {
+        super(name, locationIndex);
+    }
 
     public static void imFeelingLucky(Player player) {
         int ret = (int)((Math.random() * 2));
