@@ -50,6 +50,7 @@ public class GameLogic {
 
         while(isGameContinue()) {
             for (Player player : players) {
+                System.out.println("Player "+player.getName()+"'s turn");
                 if(player.isInJail()){
                     continue;
                 }
@@ -60,6 +61,7 @@ public class GameLogic {
                 dice2.generateRandomValFromDice();
 
                 int diceResult = Dice.getDiceResult(); // get static dice result
+                Dice.setDiceResult(0);
                 System.out.println("Dice result: " + diceResult);
                 int playerNewLocationIndex = player.getCurrLocationIndex() + diceResult;
 
@@ -68,6 +70,7 @@ public class GameLogic {
                 }
                 player.setCurrLocationIndex(playerNewLocationIndex);
                 int playerLocIndexAfterMove = player.getCurrLocationIndex();
+                // TODO FIX OUT OF BOUNDS EXCEPTION
                 Location playerLocAfterMove = locations.get(playerLocIndexAfterMove);
 
                 // TODO (optional) if player passes STARTing location, give some cash to player or not(optional)
@@ -82,7 +85,7 @@ public class GameLogic {
                     LocationLuckyCard playerLocAfterMove1 = (LocationLuckyCard) playerLocAfterMove;
                 } else {
                     // Cast to LocationCity
-                    LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;
+                    LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;// TODO Location cannot be cast to LocationCity start block is location
                     if (playerLocAfterMove1.isLocationOwned()) {
                         int rentAmount = playerLocAfterMove1.getRentPrice(); // calculate rent price
                         player.setCash(player.getCash() - rentAmount); // decrease leaseholder player's cash
@@ -98,8 +101,11 @@ public class GameLogic {
                             playerLocAfterMove1.setOwner(player);
                         }
                     }
+
+                    showPlayerInfo(player);
                     // TODO after every turn, print Player's info by calling showPlayerInfo(Player player)
                 }
+
             }
         }
 
@@ -116,7 +122,7 @@ public class GameLogic {
         return true;
     }
 
-    public String showPlayerInfo(Player player) {
+    public static String showPlayerInfo(Player player) {
         return "Player " + player.getName() + " is currently on: " +
                 locations.get(player.getCurrLocationIndex()).getName() +
                 " and has " + player.getCash() + "$ money";

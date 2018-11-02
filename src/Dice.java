@@ -4,6 +4,10 @@ public class Dice {
         return diceResult;
     }
 
+    public static void setDiceResult(int diceResult) {
+        Dice.diceResult = diceResult;
+    }
+
     // All instances of Dice will share the same diceResult object
     private static int diceResult = 0;
 
