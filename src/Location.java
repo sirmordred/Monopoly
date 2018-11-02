@@ -5,6 +5,8 @@ public class Location {
         this.locationIndex = locationIndex;
     }
 
+
+
     public String getName() {
         return name;
     }
@@ -33,7 +35,7 @@ public class Location {
     private int price;
     private int rentPrice;
     private Player owner = null;
-    private int locationIndex = 1; // TODO 1 is for START
+    private int locationIndex = 0; // TODO 1 is for START
 
     public int getLocationIndex() {
         return locationIndex;

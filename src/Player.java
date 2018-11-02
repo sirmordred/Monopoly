@@ -5,7 +5,7 @@ public class Player {
 
     private String name;
     private int cash = 1500;
-    private List<Location> ownedLocations = new ArrayList<>();; // TODO delete
+    private List<Location> ownedLocations = new ArrayList<>(); // TODO delete
     private boolean isInJail = false;
     private int currLocationIndex = 1; // TODO 1 is for START
 

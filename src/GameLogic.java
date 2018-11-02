@@ -6,39 +6,54 @@ public class GameLogic {
     private static List<Location> locations = new ArrayList<>();
 
     public static void main(String[] args) {
-        System.out.println("Enter the number of players you want :");
 
         Scanner scn = new Scanner(System.in);
+        Scanner scnline = new Scanner(System.in);
+        int totalPlayerNum;
 
-        int totalPlayerNum = scn.nextInt();
-        // TODO add limit 2..4
+        do{
+            System.out.println("Enter the number of players you want :");
+            totalPlayerNum=scn.nextInt();
+            if (totalPlayerNum<2 || totalPlayerNum>4){
+                System.out.println("Error: Player number must between 2..4");
+            }
+        } while (totalPlayerNum<2 || totalPlayerNum>4);
+
 
         for(int i = 1; i < totalPlayerNum+1; i++) {
-            // TODO show "enter Player1 name dialog to use to choose
-            players.add(new Player("i" + i));
+            System.out.println("Enter Player"+i +" name: " );
+            String name = scnline.nextLine();
+
+            players.add(new Player(name + i));
         }
 
         // Create locations and add them to the locations arraylist
-        locations.add(new Location("START", 1));
-        locations.add(new Location("LISBON", 2));
-        locations.add(new Location("PERU", 3));
-        locations.add(new Location("ATHENS", 4));
-        locations.add(new Location("ISTANBUL", 5));
-        locations.add(new Location("JAIL", 6));
-        locations.add(new Location("HONGKONG", 7));
-        locations.add(new Location("LONDON", 8));
-        locations.add(new Location("TAX", 9));
-        locations.add(new Location("MOSCOW", 10));
-        locations.add(new Location("TOKYO", 11));
+        locations.add(new Location("START", 0));
+        locations.add(new Location("LISBON", 1));
+        locations.add(new Location("PERU", 2));
+        locations.add(new Location("ATHENS", 3));
+        locations.add(new Location("ISTANBUL", 4));
+        locations.add(new Location("JAIL", 5));
+        locations.add(new Location("HONGKONG", 6));
+        locations.add(new Location("LONDON", 7));
+        locations.add(new Location("TAX", 8));
+        locations.add(new Location("MOSCOW", 9));
+        locations.add(new Location("TOKYO", 10));
 
         while(isGameContinue()) {
             for (Player player : players) {
-                // TODO add check if user is not in Jail
+                if(player.isInJail()){
+                    continue;
+                }
                 // player rolls dice
-                int diceResult = Dice.getRandomFromFirstDice() + Dice.getRandomFromSecondDice();
+                int diceResult = Dice.  getRandomFromFirstDice() + Dice.getRandomFromSecondDice();
                 System.out.println("Dice result: " + diceResult);
                 // TODO check indexes (outofbonds, eg 11 + 4)
-                player.setCurrLocationIndex(player.getCurrLocationIndex() + diceResult);
+                int playerNewLocationIndex = player.getCurrLocationIndex() + diceResult;
+                if (playerNewLocationIndex > locations.size()){
+                    playerNewLocationIndex=(playerNewLocationIndex % locations.size())-1;
+                }
+                player.setCurrLocationIndex(playerNewLocationIndex);
                 int playerLocIndexAfterMove = player.getCurrLocationIndex();
                 Location playerLocAfterMove = locations.get(playerLocIndexAfterMove);
 
