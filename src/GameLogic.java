@@ -88,6 +88,7 @@ public class GameLogic {
                 } else if (playerLocAfterMove instanceof LocationLuckyCard) {
                     // TODO if location is LuckyCard, call imFeelingLucky() function
                     LocationLuckyCard playerLocAfterMove1 = (LocationLuckyCard) playerLocAfterMove;
+                    //LocationLuckyCard.imFeelingLucky(); //TODO control this function in game.
                 } else if (playerLocAfterMove instanceof LocationCity){
                     LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;// TODO Location cannot be cast to LocationCity start block is location
                     if (playerLocAfterMove1.isLocationOwned()) {
