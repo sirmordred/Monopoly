@@ -9,6 +9,7 @@ public class GameLogic {
 
         Scanner scn = new Scanner(System.in);
         Scanner scnline = new Scanner(System.in);
+        Scanner scnUnused = new Scanner(System.in);
         int totalPlayerNum;
 
         do{
@@ -24,7 +25,7 @@ public class GameLogic {
             System.out.println("Enter Player"+i +" name: " );
             String name = scnline.nextLine();
 
-            players.add(new Player(name + i));
+            players.add(new Player(name)); // TODO make sure user didnt enter same name which can create problems
         }
 
         // Create locations and add them to the locations arraylist
@@ -51,10 +52,13 @@ public class GameLogic {
         while(isGameContinue()) {
             for (Player player : players) {
                 System.out.println("Player "+player.getName()+"'s turn");
-                if(player.isInJail()){ // TODO print info of player which is in Jail
+                if(player.isInJail()) {
                     System.out.println(player.getName()+" is in jail.");
+                    player.setInJail(false); // for exiting from jail on the next round
                     continue;
                 }
+                System.out.println("Press any key to roll dice");
+                scnUnused.nextLine();
                 // player rolls dice
                 Dice dice1 = new Dice();
                 Dice dice2 = new Dice();
@@ -72,6 +76,7 @@ public class GameLogic {
                 player.setCurrLocationIndex(playerNewLocationIndex);
                 int playerLocIndexAfterMove = player.getCurrLocationIndex();
                 Location playerLocAfterMove = locations.get(playerLocIndexAfterMove);
+                System.out.println("You are now on " + playerLocAfterMove.getName().toUpperCase());
 
                 // TODO (optional) if player passes STARTing location, give some cash to player or not(optional)
                 if (playerLocAfterMove instanceof LocationJail) {
@@ -91,24 +96,26 @@ public class GameLogic {
                         playerLocAfterMove1.getOwner().setCash(playerLocAfterMove1.getOwner().getCash() + rentAmount); // increase owner player's cash
                     } else {
                         Scanner scn2 = new Scanner(System.in);
+                        System.out.println("You have: " + player.getCash() + "$ and "
+                                + playerLocAfterMove1.getName().toUpperCase()
+                                + "'s price: "+ playerLocAfterMove1.getPrice() + "$");
                         System.out.println("Do you want to buy this location? (Y/n):");
-                        System.out.println("Price:"+ playerLocAfterMove1.getPrice());
                         String userChoice = scn2.nextLine();
                         if (userChoice.equals("Y") || userChoice.equals("y")) {
                             int price = playerLocAfterMove1.getPrice();
-                            if (player.getCash()<price){
-                                System.out.println("Player hasnt enough money.");
-                            }
-                            else{
+                            if (player.getCash() < price){
+                                System.out.println("Sorry, You don't have enough money.");
+                            } else {
                                 player.setCash(player.getCash() - price);
                                 playerLocAfterMove1.setOwner(player);
-                                System.out.println(player.getName()+" has location:"+playerLocAfterMove1.getName()+" and remaining money is:"+player.getCash());
+                                System.out.println(player.getName()+" bought location:"+playerLocAfterMove1.getName()+" and remaining money is:"+player.getCash());
                             }
 
                         }
                     }
                 }
-                showPlayerInfo(player);
+                //showPlayerInfo(player); TODO do not show player info for now
+                System.out.println("\n**********************\n");
             }
         }
 
