@@ -52,6 +52,7 @@ public class GameLogic {
             for (Player player : players) {
                 System.out.println("Player "+player.getName()+"'s turn");
                 if(player.isInJail()){ // TODO print info of player which is in Jail
+                    System.out.println(player.getName()+" is in jail.");
                     continue;
                 }
                 // player rolls dice
@@ -95,9 +96,15 @@ public class GameLogic {
                         String userChoice = scn2.nextLine();
                         if (userChoice.equals("Y") || userChoice.equals("y")) {
                             int price = playerLocAfterMove1.getPrice();
-                            // TODO check if Player can pay the price !!!
-                            player.setCash(player.getCash() - price);
-                            playerLocAfterMove1.setOwner(player);
+                            if (player.getCash()<price){
+                                System.out.println("Player hasnt enough money.");
+                            }
+                            else{
+                                player.setCash(player.getCash() - price);
+                                playerLocAfterMove1.setOwner(player);
+                                System.out.println(player.getName()+" has location:"+playerLocAfterMove1.getName()+" and remaining money is:"+player.getCash());
+                            }
+
                         }
                     }
                 }

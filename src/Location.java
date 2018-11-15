@@ -1,7 +1,7 @@
 public class Location {
 
     private String name;
-    private int locationIndex = 0; // TODO 1 is for START
+    private int locationIndex = 1;
 
     public Location(String name, int locationIndex) {
         this.name = name;

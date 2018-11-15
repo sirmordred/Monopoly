@@ -13,7 +13,8 @@ public class LocationLuckyCard extends Location {
                 // quantity will be randomly selected
                 break;
             case 1:
-                // TODO call function to take Player to the Jail
+                System.out.println("Lucky card : You are in jail now.");
+                player.setInJail(true);
                 break;
             case 2:
                 // TODO call function to move Player lcoation by random number
