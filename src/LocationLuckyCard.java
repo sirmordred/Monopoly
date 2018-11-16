@@ -34,7 +34,7 @@ public class LocationLuckyCard extends Location {
             case 1:
                 System.out.println("Lucky card : You are in jail now.");
                 player.setInJail(true);
-                // TODO also set player's location to JAIL's location
+                player.setCurrLocationIndex(5);
                 break;
             case 2:
                 int random = (int)((Math.random() * 10));
