@@ -201,16 +201,25 @@ public class GameLogic {
     }
 
 
-    public static boolean isGameContinue() {
+    private static boolean isGameContinue() {
         for (Player player : players) {
             if (player.getCash() <= 0) {
-                return false;
+                System.out.println("Player " + player.getName() + " is bankrupted so eliminated");
+                players.remove(player); // TODO check if "removing element from list while iterating on the list" can create problems? or not? (like outofbonds exception)
             }
         }
-        return true;
+        if(players.size() == 1) {
+            Player winnerPlayer = players.get(0); // TODO check if the last player's(so winner's) index is really 0 ???
+            System.out.println("Congratulation!!! Game is over, Player "
+                    + winnerPlayer.getName() + " won the game !!!");
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
-    public static void showPlayerInfo(Player player) {
+    private static void showPlayerInfo(Player player) {
         System.out.println("Player " + player.getName() + " is currently on: " +
                 locations.get(player.getCurrLocationIndex()).getName() +
                 " and has " + player.getCash() + "$ money");
