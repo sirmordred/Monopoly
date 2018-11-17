@@ -38,7 +38,7 @@ public class LocationLuckyCard extends Location {
                 break;
             case 2:
                 int random = (int)((Math.random() * 10));
-                if(random == 5){
+                if(random == 5){ //TODO BURA INDEXE GORE DEGISECEK
                     while (random==5){
                         random = (int)((Math.random() * 10));
                     }
