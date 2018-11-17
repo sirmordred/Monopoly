@@ -16,7 +16,7 @@ public class LocationLuckyCard extends Location {
         return luckyCardLocations;
     }
 
-    public static void imFeelingLucky(Player player) {
+    public static void imFeelingLucky(Player player, List<Location> locations) {
         int ret = (int)((Math.random() * 2));
         switch (ret) {
             case 0:
@@ -37,15 +37,16 @@ public class LocationLuckyCard extends Location {
                 player.setCurrLocationIndex(5);
                 break;
             case 2:
-                int random = (int)((Math.random() * 10));
-                if(random == 5){ //TODO BURA INDEXE GORE DEGISECEK
-                    while (random==5){
-                        random = (int)((Math.random() * 10));
-                    }
-                }
-                System.out.println("You take a lucky card and your location changed by  :" );//TODO gelen random indexin sehir ismini yazdir
+                List<Integer> jailLocations = LocationJail.getJailLocations();
+                List<Integer> luckyCardLocations = LocationLuckyCard.getLuckyCardLocations();
+                int random;
+                do {
+                    random = (int)((Math.random() * locations.size()));
+                } while (jailLocations.contains(random)
+                        || luckyCardLocations.contains(random)); // do not allow to take player into another jail or luckycard location which can create infinite loop
+                System.out.println("You take a lucky card and you are now on: "
+                        + locations.get(random).getName());
                 player.setCurrLocationIndex(random);
-                // TODO tekrar luckycard'a veya hapise gelebilir ona göre ayarlamalar yap
                 break;
 /* TODO disabled for now (olasılıkların balansını ayarla)
             case 3:
