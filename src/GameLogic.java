@@ -33,8 +33,7 @@ public class GameLogic {
         locations.add(new LocationCity("OLD KENT ROAD", 1,
                 60, 10, null));
 
-        locations.add(new LocationCity("OLD KENT ROAD", 2,
-                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX
+        locations.add(new LocationLuckyCard("CHANCE",2));
 
         locations.add(new LocationCity("WHITECHAPEL", 3,
                 60, 10, null));
@@ -47,14 +46,13 @@ public class GameLogic {
         locations.add(new LocationCity("THE ANGEL ISLINGTON", 6,
                 100, 20, null));
 
-        locations.add(new LocationCity("OLD KENT ROAD", 7,
-                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+        locations.add(new LocationLuckyCard("CHANCE",7));
 
         locations.add(new LocationCity("EUSTON ROAD", 8,
                 100, 20, null));
         locations.add(new LocationCity("PENTONVILLE ROAD", 9,
                 120, 25, null));
-        locations.add(new LocationJail("JAIL", 10)); // JAIL LOCATION //TODO LUCKY CARD JAIL INDEXINI DEGIS
+        locations.add(new LocationJail("JAIL", 10));// JAIL LOCATION 
 
         locations.add(new LocationCity("PALL MALL", 11,
                 140, 30, null));
@@ -68,8 +66,7 @@ public class GameLogic {
                 200, 40, null));
         locations.add(new LocationCity("BOW STREET", 16,
                 180, 35, null));
-        locations.add(new LocationCity("OLD KENT ROAD", 17,
-                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+        locations.add(new LocationLuckyCard("CHANCE",17));
 
         locations.add(new LocationCity("MARLBROROUGH STREET", 18,
                 180, 35, null));
@@ -79,8 +76,7 @@ public class GameLogic {
 
         locations.add(new LocationCity("STRANT", 21,
                 220, 45, null));
-        locations.add(new LocationCity("OLD KENT ROAD", 22,
-                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+        locations.add(new LocationLuckyCard("CHANCE",22));
 
         locations.add(new LocationCity("FLEET STREET", 23,
                 220, 45, null));
@@ -106,8 +102,7 @@ public class GameLogic {
         locations.add(new LocationCity("OXFORD STREET", 32,
                 300, 65, null));
 
-        locations.add(new LocationCity("OLD KENT ROAD", 33,
-                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+        locations.add(new LocationLuckyCard("CHANCE",33));
 
         locations.add(new LocationCity("BOND STREET", 34,
                 320, 70, null));
@@ -115,8 +110,7 @@ public class GameLogic {
         locations.add(new LocationCity("LIVERPOOL STREET STATION", 35,
                 200, 40, null));
 
-        locations.add(new LocationCity("OLD KENT ROAD", 36,
-                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+        locations.add(new LocationLuckyCard("CHANCE",36));
 
         locations.add(new LocationCity("PARKLANE", 37,
                 350, 75, null));
