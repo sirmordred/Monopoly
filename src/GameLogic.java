@@ -29,25 +29,102 @@ public class GameLogic {
         }
 
         // Create locations and add them to the locations arraylist
-        locations.add(new Location("START", 0)); // STARTING LOCATION
-        locations.add(new LocationCity("LISBON", 1,
-                500, 100, null));
-        locations.add(new LocationCity("PERU", 2,
-                500, 100, null));
-        locations.add(new LocationCity("ATHENS", 3,
-                500, 100, null));
-        locations.add(new LocationCity("ISTANBUL", 4,
-                500, 100, null));
-        locations.add(new LocationJail("JAIL", 5)); // JAIL LOCATION
-        locations.add(new LocationCity("HONGKONG", 6,
-                500, 100, null));
-        locations.add(new LocationCity("LONDON", 7,
-                500, 100, null));
-        locations.add(new LocationTaxAdmin("TAX", 8, 250)); // TAX ADMINISTRATION LOCATION
-        locations.add(new LocationCity("MOSCOW", 9,
-                500, 100, null));
-        locations.add(new LocationCity("TOKYO", 10,
-                500, 100, null));
+        locations.add(new Location("START", 0)); // STARTING LOCATION //+200 DOLAR TODO
+        locations.add(new LocationCity("OLD KENT ROAD", 1,
+                60, 10, null));
+
+        locations.add(new LocationCity("OLD KENT ROAD", 2,
+                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX
+
+        locations.add(new LocationCity("WHITECHAPEL", 3,
+                60, 10, null));
+
+        locations.add(new LocationTaxAdmin("INCOME TAX", 4, 200)); // TAX ADMINISTRATION LOCATION
+
+        locations.add(new LocationCity("KINGS CROSS ", 5,
+                200, 40, null));
+
+        locations.add(new LocationCity("THE ANGEL ISLINGTON", 6,
+                100, 20, null));
+
+        locations.add(new LocationCity("OLD KENT ROAD", 7,
+                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+
+        locations.add(new LocationCity("EUSTON ROAD", 8,
+                100, 20, null));
+        locations.add(new LocationCity("PENTONVILLE ROAD", 9,
+                120, 25, null));
+        locations.add(new LocationJail("JAIL", 10)); // JAIL LOCATION //TODO LUCKY CARD JAIL INDEXINI DEGIS
+
+        locations.add(new LocationCity("PALL MALL", 11,
+                140, 30, null));
+        locations.add(new LocationTaxAdmin("ELECTRIC COMPANY", 12, 150)); // TAX ADMINISTRATION LOCATION
+
+        locations.add(new LocationCity("WHITEHALL", 13,
+                140, 30, null));
+        locations.add(new LocationCity("NORTHUMBERLAND AVENUE", 14,
+                160, 35, null));
+        locations.add(new LocationCity("MARLEYBONE STATION", 15,
+                200, 40, null));
+        locations.add(new LocationCity("BOW STREET", 16,
+                180, 35, null));
+        locations.add(new LocationCity("OLD KENT ROAD", 17,
+                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+
+        locations.add(new LocationCity("MARLBROROUGH STREET", 18,
+                180, 35, null));
+        locations.add(new LocationCity("VINE STREET", 19,
+                200, 40, null));
+        locations.add(new LocationTaxAdmin("FREE PARKING", 20, 0)); // BURADA HICBISEY OLMAMASI DOGRU
+
+        locations.add(new LocationCity("STRANT", 21,
+                220, 45, null));
+        locations.add(new LocationCity("OLD KENT ROAD", 22,
+                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+
+        locations.add(new LocationCity("FLEET STREET", 23,
+                220, 45, null));
+        locations.add(new LocationCity("TRAFALGAR SQUARE", 24,
+                240, 50, null));
+        locations.add(new LocationCity("FENCHURCH STREET STATION", 25,
+                200, 40, null));
+        locations.add(new LocationCity("LEICESTER SQUARE", 26,
+                260, 55, null));
+        locations.add(new LocationCity("COVENTRY STREET", 27,
+                260, 55, null));
+        locations.add(new LocationTaxAdmin("WATER WORKS", 28, 150));
+        locations.add(new LocationCity("PICCADILLY", 29,
+                280, 60, null));
+
+
+        locations.add(new LocationCity("GO TO JAIL", 30,
+                260, 55, null));//TODO BURAYA GELINCE 10.INDEXE YANI JAILE GONDERECEK
+
+
+        locations.add(new LocationCity("REGENT STREET", 31,
+                300, 65, null));
+        locations.add(new LocationCity("OXFORD STREET", 32,
+                300, 65, null));
+
+        locations.add(new LocationCity("OLD KENT ROAD", 33,
+                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+
+        locations.add(new LocationCity("BOND STREET", 34,
+                320, 70, null));
+
+        locations.add(new LocationCity("LIVERPOOL STREET STATION", 35,
+                200, 40, null));
+
+        locations.add(new LocationCity("OLD KENT ROAD", 36,
+                60, 10, null));//TODO LUCKY CARD FOR THIS INDEX TOO
+
+        locations.add(new LocationCity("PARKLANE", 37,
+                350, 75, null));
+        locations.add(new LocationTaxAdmin("SUPER TAX", 38, 100));
+        locations.add(new LocationCity("MAYFAIR", 39,
+                400, 80, null));
+
+
 
         while(isGameContinue()) {
             for (Player player : players) {
