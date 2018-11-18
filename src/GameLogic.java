@@ -126,6 +126,13 @@ public class GameLogic {
                 if(player.isInJail()) {
                     System.out.println(player.getName()+" is in jail.");
                     player.setInJail(false); // for exiting from jail on the next round
+                    int anotherJailLoc = player.getCurrLocationIndex();
+                    for (Integer jailLoc : LocationJail.getJailLocations()) {
+                        if (!jailLoc.equals(player.getCurrLocationIndex())) {
+                            anotherJailLoc = jailLoc; // detect another jail location (different from jail which player is cureently on)
+                        }
+                    }
+                    player.setCurrLocationIndex(anotherJailLoc); // Exit from another jail
                     continue;
                 }
                 System.out.println("Press any key to roll dice");
@@ -199,6 +206,7 @@ public class GameLogic {
         for (Player player : players) {
             if (player.getCash() <= 0) {
                 System.out.println("Player " + player.getName() + " is bankrupted so eliminated");
+                // TODO what will happen to eliminated player's owned locations ???
                 players.remove(player); // TODO check if "removing element from list while iterating on the list" can create problems? or not? (like outofbonds exception)
             }
         }

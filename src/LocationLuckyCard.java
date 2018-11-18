@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class LocationLuckyCard extends Location {
 
@@ -34,7 +35,7 @@ public class LocationLuckyCard extends Location {
             case 1:
                 System.out.println("Lucky card : You are in jail now.");
                 player.setInJail(true);
-                player.setCurrLocationIndex(10);//TODO 10 JAIL AMA JAILIN CIKISINA MI GONDERECEZ EMIN DEGILIM
+                player.setCurrLocationIndex(LocationJail.getJailLocations().get(0));
                 break;
             case 2:
                 List<Integer> jailLocations = LocationJail.getJailLocations();
@@ -47,19 +48,42 @@ public class LocationLuckyCard extends Location {
                 System.out.println("You take a lucky card and you are now on: "
                         + locations.get(random).getName());
                 player.setCurrLocationIndex(random);
-                break;
-/* TODO disabled for now (olasılıkların balansını ayarla)
-            case 3:
 
-                int random2 = (int )(Math.random() * 400 + 100);
-                System.out.println("You take a lucky card and your cash decrease "+random2);
-                if((player.getCash()-random2)<0){
-                    player.setCash(0);
+                // Make necessary actions on new location
+
+                Location playerLocAfterMove = locations.get(random);
+                System.out.println("You are now on " + playerLocAfterMove.getName().toUpperCase());
+
+                if (playerLocAfterMove instanceof LocationTaxAdmin) {
+                    // TODO if location is tax, decrease player's cash (taxing)
+                    LocationTaxAdmin playerLocAfterMove1 = (LocationTaxAdmin) playerLocAfterMove;
+                } else if (playerLocAfterMove instanceof LocationCity){
+                    LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;
+                    if (playerLocAfterMove1.isLocationOwned()) {
+                        int rentAmount = playerLocAfterMove1.getRentPrice(); // calculate rent price
+                        player.setCash(player.getCash() - rentAmount); // decrease leaseholder player's cash
+                        playerLocAfterMove1.getOwner().setCash(playerLocAfterMove1.getOwner().getCash() + rentAmount); // increase owner player's cash
+                    } else {
+                        Scanner scn2 = new Scanner(System.in);
+                        System.out.println("You have: " + player.getCash() + "$ and "
+                                + playerLocAfterMove1.getName().toUpperCase()
+                                + "'s price: "+ playerLocAfterMove1.getPrice() + "$");
+                        System.out.println("Do you want to buy this location? (Y/n):");
+                        String userChoice = scn2.nextLine();
+                        if (userChoice.equals("Y") || userChoice.equals("y")) {
+                            int price = playerLocAfterMove1.getPrice();
+                            if (player.getCash() < price){
+                                System.out.println("Sorry, You don't have enough money.");
+                            } else {
+                                player.setCash(player.getCash() - price);
+                                playerLocAfterMove1.setOwner(player);
+                                System.out.println(player.getName()+" bought location:"+playerLocAfterMove1.getName()+" and remaining money is:"+player.getCash());
+                            }
+
+                        }
+                    }
                 }
-                else {
-                    player.setCash(player.getCash() - random2);
-                }
-*/
+                break;
             default:
                 break;
         }
