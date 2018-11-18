@@ -141,8 +141,8 @@ public class GameLogic {
                 System.out.println("Dice result: " + diceResult);
                 int playerNewLocationIndex = player.getCurrLocationIndex() + diceResult;
 
-                if (playerNewLocationIndex > locations.size()){
-                    playerNewLocationIndex = (playerNewLocationIndex % locations.size()) - 1;
+                if (playerNewLocationIndex >= locations.size()){
+                    playerNewLocationIndex = playerNewLocationIndex % locations.size();
                 }
                 player.setCurrLocationIndex(playerNewLocationIndex);
                 int playerLocIndexAfterMove = player.getCurrLocationIndex();
@@ -161,7 +161,7 @@ public class GameLogic {
                     LocationLuckyCard playerLocAfterMove1 = (LocationLuckyCard) playerLocAfterMove;
                     //LocationLuckyCard.imFeelingLucky(); //TODO control this function in game.
                 } else if (playerLocAfterMove instanceof LocationCity){
-                    LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;// TODO Location cannot be cast to LocationCity start block is location
+                    LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;
                     if (playerLocAfterMove1.isLocationOwned()) {
                         int rentAmount = playerLocAfterMove1.getRentPrice(); // calculate rent price
                         player.setCash(player.getCash() - rentAmount); // decrease leaseholder player's cash
