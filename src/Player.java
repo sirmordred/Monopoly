@@ -5,9 +5,9 @@ public class Player {
 
     private String name;
     private int cash = 1500;
-    private List<Location> ownedLocations = new ArrayList<>();
+    private List<LocationCity> ownedLocations = new ArrayList<>();
     private boolean isInJail = false;
-    private int currLocationIndex = 0; // TODO 0 is for START
+    private int currLocationIndex = 0;
 
     public Player(String name) {
         this.name = name;
@@ -37,12 +37,8 @@ public class Player {
         this.cash = cash;
     }
 
-    public List<Location> getOwnedLocations() {
+    public List<LocationCity> getOwnedLocations() {
         return ownedLocations;
-    }
-
-    public void setOwnedLocations(List<Location> ownedLocations) {
-        this.ownedLocations = ownedLocations;
     }
 
     public boolean isInJail() {

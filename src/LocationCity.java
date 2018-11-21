@@ -1,4 +1,4 @@
-public class LocationCity extends Location {
+public class LocationCity extends Location implements Comparable{
 
     private int price;
     private int rentPrice;
@@ -38,5 +38,11 @@ public class LocationCity extends Location {
 
     public boolean isLocationOwned() { // if this property has owner (so owner variable is not NULL) return true
         return this.owner != null;
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        return String.valueOf(this.price).compareTo(String.valueOf(((LocationCity) o).price));
     }
 }

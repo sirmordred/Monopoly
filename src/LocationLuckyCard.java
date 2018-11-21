@@ -35,15 +35,15 @@ public class LocationLuckyCard extends Location {
             case 1:
                 System.out.println("Lucky card : You are in jail now.");
                 player.setInJail(true);
-                player.setCurrLocationIndex(LocationJail.getJailLocations().get(0));
+                player.setCurrLocationIndex(LocationJail.jailLocationIndex);
                 break;
             case 2:
-                List<Integer> jailLocations = LocationJail.getJailLocations();
+                int goToJailLocation = LocationJail.goToJailLocationIndex;
                 List<Integer> luckyCardLocations = LocationLuckyCard.getLuckyCardLocations();
                 int random;
                 do {
                     random = (int)((Math.random() * locations.size()));
-                } while (jailLocations.contains(random)
+                } while ((goToJailLocation == random)
                         || luckyCardLocations.contains(random)); // do not allow to take player into another jail or luckycard location which can create infinite loop
                 System.out.println("You take a lucky card and you are now on: "
                         + locations.get(random).getName());
@@ -79,6 +79,7 @@ public class LocationLuckyCard extends Location {
                             } else {
                                 player.setCash(player.getCash() - price);
                                 playerLocAfterMove1.setOwner(player);
+                                player.getOwnedLocations().add(playerLocAfterMove1);
                                 System.out.println(player.getName()+" bought location:"+playerLocAfterMove1.getName()+" and remaining money is:"+player.getCash());
                             }
 

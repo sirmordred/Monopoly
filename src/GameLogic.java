@@ -57,7 +57,7 @@ public class GameLogic {
                 100, 20, null));
         locations.add(new LocationCity("PENTONVILLE ROAD", 9,
                 120, 25, null));
-        locations.add(new LocationJail("JAIL", 10));// JAIL LOCATION 
+        locations.add(new LocationJail("JAIL", 10, 0));// JAIL LOCATION
 
         locations.add(new LocationCity("PALL MALL", 11,
                 140, 30, null));
@@ -98,8 +98,7 @@ public class GameLogic {
                 280, 60, null));
 
 
-        locations.add(new LocationCity("GO TO JAIL", 30,
-                260, 55, null));//TODO BURAYA GELINCE 10.INDEXE YANI JAILE GONDERECEK
+        locations.add(new LocationJail("GO TO JAIL", 30, 1));
 
 
         locations.add(new LocationCity("REGENT STREET", 31,
@@ -131,13 +130,6 @@ public class GameLogic {
                 if(player.isInJail()) {
                     System.out.println(player.getName()+" is in jail.");
                     player.setInJail(false); // for exiting from jail on the next round
-                    int anotherJailLoc = player.getCurrLocationIndex();
-                    for (Integer jailLoc : LocationJail.getJailLocations()) {
-                        if (!jailLoc.equals(player.getCurrLocationIndex())) {
-                            anotherJailLoc = jailLoc; // detect another jail location (different from jail which player is cureently on)
-                        }
-                    }
-                    player.setCurrLocationIndex(anotherJailLoc); // Exit from another jail
                     continue;
                 }
                 System.out.println("Press any key to roll dice");
@@ -164,7 +156,10 @@ public class GameLogic {
 
                 if (playerLocAfterMove instanceof LocationJail) {
                     LocationJail playerLocAfterMove1 = (LocationJail) playerLocAfterMove;
-                    player.setInJail(true);
+                    if (playerLocAfterMove1.getType() != 0) { // it means this block is goToJail so block the player and take him to the jail
+                        player.setInJail(true);
+                        player.setCurrLocationIndex(LocationJail.jailLocationIndex);
+                    }
                 } else if (playerLocAfterMove instanceof LocationTaxAdmin) {
                     LocationTaxAdmin playerLocAfterMove1 = (LocationTaxAdmin) playerLocAfterMove;
                     player.setCash(player.getCash()-playerLocAfterMove1.getTaxPrice());
@@ -193,13 +188,13 @@ public class GameLogic {
                             } else {
                                 player.setCash(player.getCash() - price);
                                 playerLocAfterMove1.setOwner(player);
+                                player.getOwnedLocations().add(playerLocAfterMove1);
                                 System.out.println(player.getName()+" bought location:"+playerLocAfterMove1.getName()+" and remaining money is:"+player.getCash());
                             }
 
                         }
                     }
                 }
-                //showPlayerInfo(player); TODO do not show player info for now
                 System.out.println("\n**********************\n");
             }
         }
@@ -210,10 +205,21 @@ public class GameLogic {
 
     private static boolean isGameContinue() {
         for (Player player : players) {
-            if (player.getCash() <= 0) {
+            if (player.getCash() < 0) {
                 System.out.println("Player " + player.getName() + " is bankrupted so eliminated");
-                // TODO what will happen to eliminated player's owned locations ???
-                players.remove(player); // TODO check if "removing element from list while iterating on the list" can create problems? or not? (like outofbonds exception)
+                List<LocationCity> playersOwnedLocations = player.getOwnedLocations(); // get player's owned locations
+                Collections.sort(playersOwnedLocations);
+                for(LocationCity city: playersOwnedLocations) {
+                    int price = city.getPrice();
+                    player.setCash(player.getCash() + price);
+                    city.setOwner(null);
+                    if (player.getCash() >= 0) { // if his/her cash is more than 0, dont sell owned locations anymore so break it
+                        break;
+                    }
+                }
+                if (player.getCash() < 0) { // if player's cash is still less than 0, player is bankrupted so it will be eliminated, eliminate it
+                    players.remove(player);
+                }
             }
         }
         if(players.size() == 1) {
