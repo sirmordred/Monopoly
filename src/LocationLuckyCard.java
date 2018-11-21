@@ -55,8 +55,10 @@ public class LocationLuckyCard extends Location {
                 System.out.println("You are now on " + playerLocAfterMove.getName().toUpperCase());
 
                 if (playerLocAfterMove instanceof LocationTaxAdmin) {
-                    // TODO if location is tax, decrease player's cash (taxing)
-                    LocationTaxAdmin playerLocAfterMove1 = (LocationTaxAdmin) playerLocAfterMove;
+                    LocationTaxAdmin playerLocAfterMove2 = (LocationTaxAdmin) playerLocAfterMove;
+                    player.setCash(player.getCash()-playerLocAfterMove2.getTaxPrice());
+                    System.out.println(player.getName()+" paid " + playerLocAfterMove2.getTaxPrice()
+                            +"$ You now have "+ player.getCash());
                 } else if (playerLocAfterMove instanceof LocationCity){
                     LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;
                     if (playerLocAfterMove1.isLocationOwned()) {
@@ -84,8 +86,8 @@ public class LocationLuckyCard extends Location {
                     }
                 }
                 break;
-            default:
-                break;
+                default:
+                    break;
         }
     }
 }

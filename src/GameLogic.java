@@ -21,15 +21,20 @@ public class GameLogic {
         } while (totalPlayerNum<2 || totalPlayerNum>4);
 
 
-        for(int i = 1; i < totalPlayerNum+1; i++) {
+        int i = 1;
+        do {
             System.out.println("Enter Player"+i +" name: " );
             String name = scnline.nextLine();
-
-            players.add(new Player(name)); // TODO make sure user didnt enter same name which can create problems
-        }
+            if (hasThisName(players,name)) {
+                System.out.println("You can't take this name.");
+                continue;
+            }
+            players.add(new Player(name));
+            i++;
+        } while (i != totalPlayerNum);
 
         // Create locations and add them to the locations arraylist
-        locations.add(new Location("START", 0)); // STARTING LOCATION //+200 DOLAR TODO
+        locations.add(new Location("START", 0));
         locations.add(new LocationCity("OLD KENT ROAD", 1,
                 60, 10, null));
 
@@ -149,6 +154,7 @@ public class GameLogic {
                 int playerNewLocationIndex = player.getCurrLocationIndex() + diceResult;
 
                 if (playerNewLocationIndex >= locations.size()){
+                    player.setCash(player.getCash()+ 100);
                     playerNewLocationIndex = playerNewLocationIndex % locations.size();
                 }
                 player.setCurrLocationIndex(playerNewLocationIndex);
@@ -156,17 +162,17 @@ public class GameLogic {
                 Location playerLocAfterMove = locations.get(playerLocIndexAfterMove);
                 System.out.println("You are now on " + playerLocAfterMove.getName().toUpperCase());
 
-                // TODO (optional) if player passes STARTing location, give some cash to player or not(optional)
                 if (playerLocAfterMove instanceof LocationJail) {
-                    // TODO OR if location is jail, take player to the jail
                     LocationJail playerLocAfterMove1 = (LocationJail) playerLocAfterMove;
+                    player.setInJail(true);
                 } else if (playerLocAfterMove instanceof LocationTaxAdmin) {
-                    // TODO if location is tax, decrease player's cash (taxing)
                     LocationTaxAdmin playerLocAfterMove1 = (LocationTaxAdmin) playerLocAfterMove;
+                    player.setCash(player.getCash()-playerLocAfterMove1.getTaxPrice());
+                    System.out.println(player.getName()+" paid " + playerLocAfterMove1.getTaxPrice()
+                            +"$ You now have "+ player.getCash());
                 } else if (playerLocAfterMove instanceof LocationLuckyCard) {
-                    // TODO if location is LuckyCard, call imFeelingLucky() function
                     LocationLuckyCard playerLocAfterMove1 = (LocationLuckyCard) playerLocAfterMove;
-                    //LocationLuckyCard.imFeelingLucky(); //TODO control this function in game.
+                    playerLocAfterMove1.imFeelingLucky(player,locations);
                 } else if (playerLocAfterMove instanceof LocationCity){
                     LocationCity playerLocAfterMove1 = (LocationCity) playerLocAfterMove;
                     if (playerLocAfterMove1.isLocationOwned()) {
@@ -225,5 +231,14 @@ public class GameLogic {
         System.out.println("Player " + player.getName() + " is currently on: " +
                 locations.get(player.getCurrLocationIndex()).getName() +
                 " and has " + player.getCash() + "$ money");
+    }
+
+    public static boolean hasThisName(List<Player> playerList, String givenName) {
+        for (Player p: playerList) {
+            if (p.getName().equals(givenName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
