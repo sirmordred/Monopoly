@@ -31,7 +31,7 @@ public class GameLogic {
             }
             players.add(new Player(name));
             i++;
-        } while (i != totalPlayerNum);
+        } while (i <= totalPlayerNum);
 
         // Create locations and add them to the locations arraylist
         locations.add(new Location("START", 0));
