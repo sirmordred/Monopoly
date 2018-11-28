@@ -6,7 +6,7 @@ public class GameLogic {
     private static List<Location> locations = new ArrayList<>();
 
     public static void main(String[] args) {
-
+        // TODO separate main() and GameLogic to eliminate all the static funcs and vars
         Scanner scn = new Scanner(System.in);
         Scanner scnline = new Scanner(System.in);
         Scanner scnUnused = new Scanner(System.in);
@@ -211,7 +211,7 @@ public class GameLogic {
                 for(LocationCity city: playersOwnedLocations) {
                     int price = city.getPrice();
                     player.setCash(player.getCash() + price);
-                    city.setOwner(null);
+                    city.setOwner(null); // TODO inform user that the his/her owned cities have been sold (haciz işlemi)
                     playersOwnedLocations.remove(city);
                     if (player.getCash() >= 0) { // if his/her cash is more than 0, dont sell owned locations anymore so break it
                         break;
@@ -234,12 +234,14 @@ public class GameLogic {
 
     }
 
+    // TODO remove this useless func
     private static void showPlayerInfo(Player player) {
         System.out.println("Player " + player.getName() + " is currently on: " +
                 locations.get(player.getCurrLocationIndex()).getName() +
                 " and has " + player.getCash() + "$ money");
     }
 
+    // TODO make it private and not-static(once we separate main() and GameLogic)
     public static boolean hasThisName(List<Player> playerList, String givenName) {
         for (Player p: playerList) {
             if (p.getName().equals(givenName)) {
