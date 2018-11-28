@@ -148,7 +148,7 @@ public class TestLocationLuckyCard {
 
         // make operation
         LocationLuckyCard testObject = (LocationLuckyCard) testLocations.get(LocationLuckyCard.getLuckyCardLocations().get(0));
-        testObject.luckyTakePlayerToAnotherLocation(testPlayer, testLocations);
+        testObject.luckyTakePlayerToAnotherLocation(testPlayer, testLocations, true);
 
         int locationIndexAfterOperation = testPlayer.getCurrLocationIndex();
 
