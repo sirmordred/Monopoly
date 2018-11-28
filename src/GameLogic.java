@@ -228,7 +228,7 @@ public class GameLogic {
             }
         }
         if(players.size() == 1) {
-            Player winnerPlayer = players.get(0); // TODO check if the last player's(so winner's) index is really 0 ???
+            Player winnerPlayer = players.get(0);
             System.out.println("Congratulation!!! Game is over, Player "
                     + winnerPlayer.getName() + " won the game !!!");
             return false;

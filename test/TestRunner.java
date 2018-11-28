@@ -11,6 +11,6 @@ public class TestRunner {
         }
 
         System.out.println("****************************************************");
-        System.out.println("RESUL OF ALL TESTS: " + result.wasSuccessful());
+        System.out.println("RESULT OF ALL TESTS: " + result.wasSuccessful());
     }
 }
