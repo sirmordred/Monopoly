@@ -205,15 +205,20 @@ public class GameLogic {
     private boolean isGameContinue() {
         for (Player player : players) {
             if (player.getCash() < 0) {
-                List<LocationCity> playersOwnedLocations = player.getOwnedLocations(); // get player's owned locations
-                Collections.sort(playersOwnedLocations);
-                for(LocationCity city: playersOwnedLocations) {
-                    int price = city.getPrice();
-                    player.setCash(player.getCash() + price);
-                    city.setOwner(null); // TODO inform user that the his/her owned cities have been sold (haciz işlemi)
-                    playersOwnedLocations.remove(city);
-                    if (player.getCash() >= 0) { // if his/her cash is more than 0, dont sell owned locations anymore so break it
-                        break;
+                if (player.getOwnedLocations().size() > 0) {
+                    System.out.println("Player: " + player.getName() +
+                            " has less than 0$ so hi/she is in debt so his/her owned lcoations will be sold/foreclosed(haciz)");
+                    List<LocationCity> playersOwnedLocations = player.getOwnedLocations(); // get player's owned locations
+                    Collections.sort(playersOwnedLocations);
+                    for(LocationCity city: playersOwnedLocations) {
+                        int price = city.getPrice();
+                        player.setCash(player.getCash() + price);
+                        System.out.println("Player " + player.getName() + "'s owned location " + city.getName() + " has been sold/foreclosed now");
+                        city.setOwner(null);
+                        playersOwnedLocations.remove(city);
+                        if (player.getCash() >= 0) { // if his/her cash is more than 0, dont sell owned locations anymore so break it
+                            break;
+                        }
                     }
                 }
                 if (player.getCash() < 0) { // if player's cash is still less than 0, player is bankrupted so it will be eliminated, eliminate it
@@ -231,13 +236,6 @@ public class GameLogic {
             return true;
         }
 
-    }
-
-    // TODO remove this useless func
-    private void showPlayerInfo(Player player) {
-        System.out.println("Player " + player.getName() + " is currently on: " +
-                locations.get(player.getCurrLocationIndex()).getName() +
-                " and has " + player.getCash() + "$ money");
     }
 
     public boolean hasThisName(List<Player> playerList, String givenName) {
