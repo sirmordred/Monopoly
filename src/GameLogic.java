@@ -240,7 +240,7 @@ public class GameLogic {
                 " and has " + player.getCash() + "$ money");
     }
 
-    private boolean hasThisName(List<Player> playerList, String givenName) {
+    public boolean hasThisName(List<Player> playerList, String givenName) {
         for (Player p: playerList) {
             if (p.getName().equals(givenName)) {
                 return true;

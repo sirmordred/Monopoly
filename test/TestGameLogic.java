@@ -9,11 +9,12 @@ public class TestGameLogic {
     @Test
     public void testHasThisName(){
         List<Player> testPlayerList = new ArrayList<>();
+        GameLogic testGameLogic = new GameLogic();
 
         testPlayerList.add(new Player("Ahmet"));
         testPlayerList.add(new Player("Mehmet"));
         testPlayerList.add(new Player("Veli"));
 
-        assertEquals(true,GameLogic.hasThisName(testPlayerList,"Ahmet"));
+        assertEquals(true,testGameLogic.hasThisName(testPlayerList,"Ahmet"));
     }
 }
