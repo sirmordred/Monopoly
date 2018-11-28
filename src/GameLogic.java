@@ -2,11 +2,10 @@ import java.util.*;
 
 public class GameLogic {
 
-    private static List<Player> players = new ArrayList<>();
-    private static List<Location> locations = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
 
-    public static void main(String[] args) {
-        // TODO separate main() and GameLogic to eliminate all the static funcs and vars
+    public void startGame() {
         Scanner scn = new Scanner(System.in);
         Scanner scnline = new Scanner(System.in);
         Scanner scnUnused = new Scanner(System.in);
@@ -203,7 +202,7 @@ public class GameLogic {
     }
 
 
-    private static boolean isGameContinue() {
+    private boolean isGameContinue() {
         for (Player player : players) {
             if (player.getCash() < 0) {
                 List<LocationCity> playersOwnedLocations = player.getOwnedLocations(); // get player's owned locations
@@ -235,14 +234,13 @@ public class GameLogic {
     }
 
     // TODO remove this useless func
-    private static void showPlayerInfo(Player player) {
+    private void showPlayerInfo(Player player) {
         System.out.println("Player " + player.getName() + " is currently on: " +
                 locations.get(player.getCurrLocationIndex()).getName() +
                 " and has " + player.getCash() + "$ money");
     }
 
-    // TODO make it private and not-static(once we separate main() and GameLogic)
-    public static boolean hasThisName(List<Player> playerList, String givenName) {
+    private boolean hasThisName(List<Player> playerList, String givenName) {
         for (Player p: playerList) {
             if (p.getName().equals(givenName)) {
                 return true;

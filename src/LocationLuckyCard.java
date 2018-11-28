@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class LocationLuckyCard extends Location {
 
-    private static int prices[] = {-500,-400,-300,-200,-100,100,200,300,400,500};
+    private int prices[] = {-500,-400,-300,-200,-100,100,200,300,400,500};
     private static List<Integer> luckyCardLocations = new ArrayList<>(); // Save multiple luckycard's location in one instance(static)
 
     public LocationLuckyCard(String name, int locationIndex) {
@@ -17,7 +17,7 @@ public class LocationLuckyCard extends Location {
         return luckyCardLocations;
     }
 
-    public static void imFeelingLucky(Player player, List<Location> locations) {
+    public void imFeelingLucky(Player player, List<Location> locations) {
         int ret = (int)((Math.random() * 2));
         switch (ret) {
             case 0:
