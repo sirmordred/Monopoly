@@ -217,7 +217,9 @@ public class GameLogic {
                         LocationCity city = iterOwnedCities.next();
                         int price = city.getPrice();
                         player.setCash(player.getCash() + price);
-                        System.out.println("Player " + player.getName() + "'s owned location " + city.getName() + " has been sold/foreclosed now");
+                        System.out.println("Player " + player.getName() + "'s owned location " +
+                                city.getName() + " has been sold/foreclosed now and so Player " +
+                                player.getName() + " now have " + player.getCash() + "$");
                         city.setOwner(null);
                         iterOwnedCities.remove();
                         if (player.getCash() >= 0) { // if his/her cash is more than 0, dont sell owned locations anymore so break it
@@ -226,7 +228,7 @@ public class GameLogic {
                     }
                 }
                 if (player.getCash() < 0) { // if player's cash is still less than 0, player is bankrupted so it will be eliminated, eliminate it
-                    System.out.println("Player " + player.getName() + " is bankrupted so eliminated");
+                    System.out.println("Player " + player.getName() + " is in debt and has no owned city to be foreclosed so He/She is bankrupted so eliminated");
                     iterPlayers.remove();
                 }
             }
