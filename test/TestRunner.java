@@ -10,7 +10,9 @@ public class TestRunner {
             System.out.println(failure.toString());
         }
 
-        System.out.println("****************************************************");
+        System.out.println("\n\n\n****************************************************");
         System.out.println("RESULT OF ALL TESTS: " + result.wasSuccessful());
+        System.out.println("****************************************************");
+
     }
 }

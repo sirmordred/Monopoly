@@ -10,8 +10,6 @@ public class TestLocationLuckyCard {
     
     Player testPlayer;
     List<Location> testLocations;
-    LocationLuckyCard testLocationLuckyCard;
-
     @Before
     public void setUp() {
         testPlayer = new Player("Busra");

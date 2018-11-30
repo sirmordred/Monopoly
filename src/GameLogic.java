@@ -123,7 +123,7 @@ public class GameLogic {
 
 
 
-        while(isGameContinue()) {
+        while(isGameContinue(players, locations)) {
             for (Player player : players) {
                 System.out.println("Player "+player.getName()+"'s turn");
                 if(player.isInJail()) {
@@ -202,7 +202,7 @@ public class GameLogic {
     }
 
 
-    private boolean isGameContinue() {
+    public boolean isGameContinue(List<Player> players, List<Location> locations) {
         for (Player player : players) {
             if (player.getCash() < 0) {
                 if (player.getOwnedLocations().size() > 0) {
@@ -215,7 +215,7 @@ public class GameLogic {
                         player.setCash(player.getCash() + price);
                         System.out.println("Player " + player.getName() + "'s owned location " + city.getName() + " has been sold/foreclosed now");
                         city.setOwner(null);
-                        playersOwnedLocations.remove(city);
+                        playersOwnedLocations.remove(city); // TODO ConcurrentModificationException here fix it
                         if (player.getCash() >= 0) { // if his/her cash is more than 0, dont sell owned locations anymore so break it
                             break;
                         }
