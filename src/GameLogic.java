@@ -123,7 +123,7 @@ public class GameLogic {
 
 
 
-        while(isGameContinue(players, locations)) {
+        while(isGameContinue(players)) {
             for (Player player : players) {
                 System.out.println("Player "+player.getName()+"'s turn");
                 if(player.isInJail()) {
@@ -202,20 +202,24 @@ public class GameLogic {
     }
 
 
-    public boolean isGameContinue(List<Player> players, List<Location> locations) {
-        for (Player player : players) {
+    public boolean isGameContinue(List<Player> players) {
+        Iterator<Player> iterPlayers = players.iterator();
+        while (iterPlayers.hasNext()) {
+            Player player = iterPlayers.next();
             if (player.getCash() < 0) {
                 if (player.getOwnedLocations().size() > 0) {
                     System.out.println("Player: " + player.getName() +
                             " has less than 0$ so hi/she is in debt so his/her owned lcoations will be sold/foreclosed(haciz)");
                     List<LocationCity> playersOwnedLocations = player.getOwnedLocations(); // get player's owned locations
                     Collections.sort(playersOwnedLocations);
-                    for(LocationCity city: playersOwnedLocations) {
+                    Iterator<LocationCity> iterOwnedCities = playersOwnedLocations.iterator();
+                    while (iterOwnedCities.hasNext()) {
+                        LocationCity city = iterOwnedCities.next();
                         int price = city.getPrice();
                         player.setCash(player.getCash() + price);
                         System.out.println("Player " + player.getName() + "'s owned location " + city.getName() + " has been sold/foreclosed now");
                         city.setOwner(null);
-                        playersOwnedLocations.remove(city); // TODO ConcurrentModificationException here fix it
+                        iterOwnedCities.remove();
                         if (player.getCash() >= 0) { // if his/her cash is more than 0, dont sell owned locations anymore so break it
                             break;
                         }
@@ -223,10 +227,11 @@ public class GameLogic {
                 }
                 if (player.getCash() < 0) { // if player's cash is still less than 0, player is bankrupted so it will be eliminated, eliminate it
                     System.out.println("Player " + player.getName() + " is bankrupted so eliminated");
-                    players.remove(player);
+                    iterPlayers.remove();
                 }
             }
         }
+
         if(players.size() == 1) {
             Player winnerPlayer = players.get(0);
             System.out.println("Congratulation!!! Game is over, Player "
