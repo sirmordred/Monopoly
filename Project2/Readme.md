@@ -1,5 +1,4 @@
 ﻿# README BEFORE RUN XXX (Read Requirements and Compatibility)
-﻿# ArticleMiner
 
 ## Requirements and Compatibility
 - This script is only compatible with PYTHON 2 so run it with 'python2 ArticleMiner.py'
@@ -12,7 +11,8 @@
 - Wget (pip install wget)
 - Additional(if you are on Ubuntu): sudo apt-get install python-tk (wordcloud dependency)
 
-Article is written in pure python and it is a second term project developed for CSE3063 Object Oriented Software Design Course(Fall 2018)
+## Info
+ArticleMiner is written in pure python and it is a second term project developed for CSE3063 Object Oriented Software Design Course(Fall 2018)
 
 Script downloads publications of selected faculy member at our department as pdf/word/txt and then outputs following files:
 - tf_list.csv: Most frequent 50 words in the input set of documents, sorted descending by their term frequency (tf) coupled with their tf values (comma seperated file, example: document;7)
