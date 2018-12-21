@@ -1,6 +1,18 @@
-﻿# Simple Text Miner
+﻿# README BEFORE RUN XXX (Read Requirements and Compatibility)
+﻿# ArticleMiner
 
-Simple Text Miner is written in pure python and it is a second term project developed for CSE3063 Object Oriented Software Design Course(Fall 2018)
+## Requirements and Compatibility
+-This script is only compatible with PYTHON 2 so run it with 'python2 ArticleMiner.py'
+-Recommended environment is 'Ubuntu Terminal', run it from there (Running this script via IDEs like pycharm or anaconda is not adviced since it may not work)
+-You need to have Chrome browser already installed onto your machine (selenium requirements)
+-Selenium (pip install selenium)
+-Pdfminer (pip install pdfminer)
+-Wordcloud (pip install wordcloud)
+-Mathplotlib (wordcloud dependency, pip install matplotlib)
+-Wget (pip install wget)
+-Additional(if you are on Ubuntu): sudo apt-get install python-tk (wordcloud dependency)
+
+Article is written in pure python and it is a second term project developed for CSE3063 Object Oriented Software Design Course(Fall 2018)
 
 Script downloads publications of selected faculy member at our department as pdf/word/txt and then outputs following files:
 - tf_list.csv: Most frequent 50 words in the input set of documents, sorted descending by their term frequency (tf) coupled with their tf values (comma seperated file, example: document;7)
