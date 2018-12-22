@@ -2,7 +2,7 @@
 
 ## Requirements and Compatibility
 - This script is only compatible with PYTHON 2 so run it with 'python2 ArticleMiner.py'
-- Recommended environment is 'Ubuntu Terminal', run it from there (Running this script via IDEs like pycharm or anaconda is not adviced since it may not work)
+- Recommended environment is 'Ubuntu Terminal', run it from there (Running this script via IDEs like pycharm or anaconda is not adviced since it may not work) (**Windows OS: Tested, works good**) (**MacOS: Not tested**)
 - You need to have Chrome browser already installed onto your machine (selenium requirements)
 - Selenium (pip install selenium)
 - Pdfminer (pip install pdfminer)
