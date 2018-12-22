@@ -120,7 +120,6 @@ def download_articles(author):
         pageSource = browser.page_source
         browser.close() # close chromedriver instance
         if pageSource != "": # if result page source is not empty
-            print('is not empty')
             htmlRet = html.fromstring(pageSource) # convert it to html object
             links = htmlRet.xpath('//a/@href') # get all urls which are in href attributes of html object
             if len(links) > 0:
@@ -280,10 +279,14 @@ def prepareChromedriver():
     if not os.path.exists(chromedriverbin_path): # check existence
         print('Downloading chromedriver...')
         downloadedFName = wget.download(chromedriver_download_url)
-        with ZipFile(os.path.join(os.getcwd(), downloadedFName), 'r') as zip_ref:
-            zip_ref.extractall(os.getcwd())
-        st = os.stat(chromedriver_name)
-        os.chmod(chromedriver_name, st.st_mode | 0111) # make it executable by everyone
+        try:
+            with ZipFile(os.path.join(os.getcwd(), downloadedFName), 'r') as zip_ref:
+                zip_ref.extractall(os.getcwd())
+            st = os.stat(chromedriver_name)
+            os.chmod(chromedriver_name, st.st_mode | 0111) # make it executable by everyone
+        except:
+            print('\nERROR: Path of folder which contains script has non-ascii character, Please put script to proper directory (e.g C:/TestFolder/ArticleMiner.py)')
+            exit()
 
     return chromedriverbin_path
 
