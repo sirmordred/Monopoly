@@ -9,7 +9,11 @@
 - Wordcloud (pip install wordcloud)
 - Mathplotlib (wordcloud dependency, pip install matplotlib)
 - Wget (pip install wget)
+- Lxml (pip install lxml)
 - Additional(if you are on Ubuntu): sudo apt-get install python-tk (wordcloud dependency)
+
+## Test Correctness of TF,IDF,TFIDF FUNCTİONS
+- No need to install anything, just run 'TestTFIDF.py'
 
 ## Info
 ArticleMiner is written in pure python and it is a second term project developed for CSE3063 Object Oriented Software Design Course(Fall 2018)
