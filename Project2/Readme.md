@@ -1,4 +1,4 @@
-﻿# README BEFORE RUN XXX (Read Requirements and Compatibility)
+﻿# README BEFORE RUN (Read Requirements and Compatibility)
 
 ## Requirements and Compatibility
 - This script is only compatible with PYTHON 2 so run it with 'python2 ArticleMiner.py'
@@ -7,7 +7,7 @@
 - Selenium (pip install selenium)
 - Pdfminer (pip install pdfminer)
 - Wordcloud (pip install wordcloud)
-- Mathplotlib (wordcloud dependency, pip install matplotlib)
+- Mathplotlib (pip install matplotlib) (wordcloud dependency)
 - Wget (pip install wget)
 - Lxml (pip install lxml)
 - Additional(if you are on Ubuntu): sudo apt-get install python-tk (wordcloud dependency)
